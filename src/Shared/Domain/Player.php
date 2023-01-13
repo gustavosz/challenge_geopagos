@@ -6,11 +6,13 @@ abstract class Player
 {
     protected $name;
     protected $skill;
+    protected $gender;
 
-    public function __construct($name, $skill)
+    public function __construct($name, $skill, $gender)
     {
         $this->name = $name;
         $this->skill = $skill;
+        $this->gender = $gender;
     }
 
     public function getName()
@@ -21,5 +23,10 @@ abstract class Player
     public function getSkill()
     {
         return $this->skill;
+    }
+
+    public function getGender()
+    {
+        return $this->gender;
     }
 }
