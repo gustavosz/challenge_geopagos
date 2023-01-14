@@ -1,15 +1,16 @@
 <?php
 
-
 namespace Core\Shared\Domain;
 
+use Core\TennisTournament\Tournaments\Domain\TournamentGender;
+use Core\TennisTournament\Tournaments\Domain\TournamentModality;
 
 abstract class Tournament
 {
     protected $modality;
     protected $gender;
 
-    public function __construct($modality, $gender)
+    public function __construct(TournamentModality $modality, TournamentGender $gender)
     {
         $this->modality = $modality;
         $this->gender = $gender;
@@ -21,12 +22,12 @@ abstract class Tournament
 
     abstract public function getWinner();
 
-    public function getModality()
+    public function modality(): TournamentModality
     {
         return $this->modality;
     }
 
-    public function getGender()
+    public function gender(): TournamentGender
     {
         return $this->gender;
     }
