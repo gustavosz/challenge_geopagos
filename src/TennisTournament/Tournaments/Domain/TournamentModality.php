@@ -7,6 +7,8 @@ use InvalidArgumentException;
 
 final class TournamentModality extends EnumValueObject
 {
+    public const ELIMINATION = 'elimination';
+
     protected function throwExceptionForInvalidValue($value)
     {
         throw new InvalidArgumentException(sprintf('The value-modality <%s> is invalid', $value));
