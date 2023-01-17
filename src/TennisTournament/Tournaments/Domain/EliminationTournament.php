@@ -2,12 +2,14 @@
 
 namespace Core\TennisTournament\Tournaments\Domain;
 
+use Core\Shared\Domain\Player;
 use Core\Shared\Domain\Tournament;
 
 class EliminationTournament extends Tournament
 {
     protected $players;
     protected $rounds;
+    protected $winner;
 
     public function __construct(TournamentModality $modality, TournamentGender $gender, TournamentPlayers $players)
     {
@@ -24,6 +26,11 @@ class EliminationTournament extends Tournament
     public function rounds(): array
     {
         return $this->rounds;
+    }
+
+    public function winner(): Player
+    {
+        return $this->winner;
     }
 
     public function simulate()
