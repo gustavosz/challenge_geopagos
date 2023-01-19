@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('start');
-            $table->dateTime('end');
             $table->unsignedBigInteger('round_id');
 
             $table->foreign('round_id')->references('id')->on('rounds');

@@ -6,11 +6,11 @@ use Core\Shared\Domain\Player;
 
 final class FemalePlayer extends Player
 {
-    protected $reactionTime;
+    protected PlayerReactionTime $reactionTime;
 
-    public function __construct(PlayerName $name, PlayerSkill $skill, PlayerGender $gender, PlayerReactionTime $reactionTime)
+    public function __construct(PlayerId $id, PlayerName $name, PlayerSkill $skill, PlayerGender $gender, PlayerReactionTime $reactionTime)
     {
-        parent::__construct($name, $skill, $gender);
+        parent::__construct($id, $name, $skill, $gender);
         $this->reactionTime = $reactionTime;
     }
 

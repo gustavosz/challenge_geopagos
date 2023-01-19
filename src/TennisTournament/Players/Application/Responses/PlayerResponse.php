@@ -8,6 +8,7 @@ use Core\TennisTournament\Players\Domain\MalePlayer;
 
 class PlayerResponse
 {
+    private string $id;
     private string $name;
     private int $skill;
     private string $gender;
@@ -15,6 +16,7 @@ class PlayerResponse
 
     public function __construct(Player $player)
     {
+        $this->id = $player->id()->value();
         $this->name = $player->name()->value();
         $this->skill = $player->skill()->value();
         $this->gender = $player->gender()->value();
@@ -24,6 +26,7 @@ class PlayerResponse
     public function toArray(): array
     {
         $values = [
+            'id' => $this->id,
             'name' => $this->name,
             'skill' => $this->skill,
             'gender' => $this->gender

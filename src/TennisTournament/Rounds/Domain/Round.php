@@ -7,8 +7,8 @@ use Core\TennisTournament\Shared\Domain\Tournament\TournamentPlayers;
 
 class Round
 {
-    private $players;
-    private $games;
+    private TournamentPlayers $players;
+    private array $games;
 
     public function __construct(TournamentPlayers $players)
     {
@@ -16,7 +16,7 @@ class Round
         $this->games = array();
     }
 
-    public function play()
+    public function play(): void
     {
         $players = $this->players->players();
 
@@ -36,5 +36,10 @@ class Round
         }
 
         return $winners;
+    }
+
+    public function games(): array
+    {
+        return $this->games;
     }
 }

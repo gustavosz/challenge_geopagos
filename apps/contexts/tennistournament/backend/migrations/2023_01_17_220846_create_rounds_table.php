@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('rounds', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
             $table->foreignUuid('tournament_id')->references('id')->on('tournaments');
         });
     }

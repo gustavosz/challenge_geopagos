@@ -7,10 +7,11 @@ use Core\TennisTournament\Players\Application\Responses\PlayerResponse;
 
 final class TournamentResponse
 {
-    private $name, $modality, $gender, $winner;
+    private $id, $name, $modality, $gender, $winner;
 
     public function __construct(Tournament $tournament)
     {
+        $this->id = $tournament->id()->value();
         $this->name = $tournament->name()->value();
         $this->modality = $tournament->modality()->value();
         $this->gender = $tournament->gender()->value();
@@ -25,6 +26,7 @@ final class TournamentResponse
         }
 
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'modality' => $this->modality,
             'gender' => $this->gender,

@@ -6,11 +6,11 @@ use Core\Shared\Domain\Player;
 use Core\TennisTournament\Players\Domain\FemalePlayer;
 use Core\TennisTournament\Players\Domain\MalePlayer;
 
-class Game
+final class Game
 {
-    private $player1;
-    private $player2;
-    private $winner;
+    private Player $player1;
+    private Player $player2;
+    private Player $winner;
 
     public function __construct(Player $player1, Player $player2)
     {

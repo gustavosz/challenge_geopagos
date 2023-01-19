@@ -5,17 +5,18 @@ namespace Core\TennisTournament\Tournaments\Domain;
 use Core\Shared\Domain\Player;
 use Core\Shared\Domain\Tournament;
 use Core\TennisTournament\Rounds\Domain\Round;
+use Core\TennisTournament\Shared\Domain\Tournament\TournamentId;
 use Core\TennisTournament\Shared\Domain\Tournament\TournamentPlayers;
 
 class EliminationTournament extends Tournament
 {
-    protected $players;
-    protected $rounds;
+    protected TournamentPlayers $players;
+    protected array $rounds;
     protected $winner;
 
-    public function __construct(TournamentName $name, TournamentModality $modality, TournamentGender $gender, TournamentPlayers $players)
+    public function __construct(TournamentId $id, TournamentName $name, TournamentModality $modality, TournamentGender $gender, TournamentPlayers $players)
     {
-        parent::__construct($name, $modality, $gender);
+        parent::__construct($id, $name, $modality, $gender);
         $this->players = $players;
         $this->rounds = array();
     }

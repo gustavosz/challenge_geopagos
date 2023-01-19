@@ -6,12 +6,12 @@ use Core\Shared\Domain\Player;
 
 final class MalePlayer extends Player
 {
-    protected $strength;
-    protected $speed;
+    protected PlayerStrength $strength;
+    protected PlayerSpeed $speed;
 
-    public function __construct(PlayerName $name, PlayerSkill $skill, PlayerGender $gender, PlayerStrength $strength, PlayerSpeed $speed)
+    public function __construct(PlayerId $id, PlayerName $name, PlayerSkill $skill, PlayerGender $gender, PlayerStrength $strength, PlayerSpeed $speed)
     {
-        parent::__construct($name, $skill, $gender);
+        parent::__construct($id, $name, $skill, $gender);
         $this->strength = $strength;
         $this->speed = $speed;
     }
