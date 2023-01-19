@@ -3,10 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Core\TennisTournament\Players\Infrastructure\Persistence\Eloquent\PlayerEloquentModel;
+use Core\TennisTournament\Tournaments\Infrastructure\Persistence\Eloquent\TournamentEloquentModel;
 use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class DatabaseSeeder extends Seeder
 {
+    use WithFaker;
     /**
      * Seed the application's database.
      *
@@ -14,11 +18,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        TournamentEloquentModel::factory()
+            ->state(['gender' => 'male'])
+            ->hasAttached(
+                PlayerEloquentModel::factory(16)->state([
+                    'gender' => 'male',
+                    'reaction_time' => null,
+                ]),
+                ['is_winner' => false],
+                'players'
+            )
+            ->create();
     }
 }
