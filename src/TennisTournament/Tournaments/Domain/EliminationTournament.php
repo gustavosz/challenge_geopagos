@@ -4,6 +4,8 @@ namespace Core\TennisTournament\Tournaments\Domain;
 
 use Core\Shared\Domain\Player;
 use Core\Shared\Domain\Tournament;
+use Core\TennisTournament\Rounds\Domain\Round;
+use Core\TennisTournament\Shared\Domain\Tournament\TournamentPlayers;
 
 class EliminationTournament extends Tournament
 {
@@ -11,9 +13,9 @@ class EliminationTournament extends Tournament
     protected $rounds;
     protected $winner;
 
-    public function __construct(TournamentModality $modality, TournamentGender $gender, TournamentPlayers $players)
+    public function __construct(TournamentName $name, TournamentModality $modality, TournamentGender $gender, TournamentPlayers $players)
     {
-        parent::__construct($modality, $gender);
+        parent::__construct($name, $modality, $gender);
         $this->players = $players;
         $this->rounds = array();
     }
@@ -28,23 +30,27 @@ class EliminationTournament extends Tournament
         return $this->rounds;
     }
 
-    public function winner(): Player
+    public function winner(): ?Player
     {
         return $this->winner;
     }
 
     public function simulate()
     {
-        // TODO: Implement simulate() method.
-    }
+        $players = $this->players->players();
 
-    public function calculateWinner()
-    {
-        // TODO: Implement calculateWinner() method.
-    }
-
-    public function getWinner()
-    {
-        // TODO: Implement getWinner() method.
+        // while more than one participant remains
+        while (count($players) > 1) {
+            // new round
+            $round = new Round(new TournamentPlayers($players, $this->gender->value()));
+            // play round
+            $round->play();
+            // get round winners
+            $players = $round->winners();
+            // add round to tournament
+            $this->rounds[] = $round;
+        }
+        // assign winner to tournament
+        $this->winner = $players[0];
     }
 }

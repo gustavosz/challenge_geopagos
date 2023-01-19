@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\TennisTournament\Tournaments\Domain;
+namespace Core\TennisTournament\Shared\Domain\Tournament;
 
 use Core\Shared\Domain\ValueObject\EnumValueObject;
 use InvalidArgumentException;

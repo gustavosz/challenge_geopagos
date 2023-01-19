@@ -20,12 +20,10 @@ class SimulateTournamentGetController extends Controller
 
     public function __invoke($id): JsonResponse
     {
-        $winner = (new TournamentSimulator($this->repository))(
+        $response = (new TournamentSimulator($this->repository))(
             new TournamentId($id)
         );
 
-        return new JsonResponse([
-            $winner
-        ], Response::HTTP_OK);
+        return new JsonResponse($response->toArray(), Response::HTTP_OK);
     }
 }
